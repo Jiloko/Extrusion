@@ -1,5 +1,3 @@
-
-
 SRCS = $(wildcard *.c)
 OBJS = $(SRCS:.c=.o)
 EXEC = Extrusion

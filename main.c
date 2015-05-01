@@ -1,12 +1,7 @@
-
-/**
- * \file main.c
- * \brief main
- * \author HABIBI Arash
- * \date 2014
- * \copyright WTFPL version 2
- */
-
+/************************
+Author : Gwenaël Larmet
+main.c
+*************************/
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -65,7 +60,7 @@ void dessinerVecteur( Vector p1){
 }
 
 void dessinerPoint( Vector p ){
-	glPointSize(5.0);
+	glPointSize(10.0);
 	glBegin(GL_POINTS);
 	glVertex3f( p.x , p.y , p.z ) ;
 	glEnd();
@@ -79,6 +74,10 @@ void display()
 
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
+
+	int i;
+	for(i=0; i < P._nb_vertices; i++)
+		dessinerPoint(P._vertices[i]);
 
 	if( !stop_input )
 		glOrtho(-1,1,-1,1,-1,1);
@@ -208,11 +207,13 @@ void mouse(int button, int state, int x, int y)
 					P_isConvex( &P ) ;
 				}
 			}
+			glutPostRedisplay();
 			break;
 
 		case GLUT_MIDDLE_BUTTON :
 			if(state==GLUT_DOWN)
 				stop_input = 1 ;
+			glutPostRedisplay();
 			break;
 
 		case GLUT_RIGHT_BUTTON :
@@ -221,6 +222,7 @@ void mouse(int button, int state, int x, int y)
 				M_init( &M ) ;
 				M_perlinExtrude( &M , &P , 128 );
 				stop_input = 1 ;
+				glutPostRedisplay();
 				break;
 			}
 			glutPostRedisplay();

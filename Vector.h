@@ -10,11 +10,6 @@ Vector.h
 #include <stdlib.h>
 #include <math.h>
 
-enum{
-	FALSE,
-	TRUE,
-};
-
 typedef struct
 {
 	float x, y, z;

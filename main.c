@@ -17,8 +17,8 @@ Mesh M;
 
 int draw = 0;
 Vector p_aim;
-float phi = -20;
-float theta = 20;
+float phi = 0;
+float theta = 0;
 GLfloat p_light[4];
 
 /* dimensions de la fenetre */
@@ -93,12 +93,12 @@ void display()
 			dessinerLigne(P._vertices[i], P._vertices[i+1]);
 	}
 
-	if( !stop_input )
+	if(!stop_input)
 		glOrtho(-1,1,-1,1,-1,1);
 	else 
 	{
 		gluPerspective(30, (float)width/height, 1, 100);
-		gluLookAt(2,2,4,0,0,0,0,1,0);
+		gluLookAt(0,0,8,0,0,0,0,1,0);
 		glTranslatef(p_aim.x,p_aim.y,p_aim.z);
 		glRotatef(theta,1,0,0);
 		glRotatef(phi,0,1,0);
@@ -118,7 +118,6 @@ void display()
 		P_draw(&P);
 		glColor3d(128,128,128);
 		dessinerPoint(P_center(&P));
-		//dessinerVecteur(P_normal(&P));
 	}
 
 	drawRepere();
